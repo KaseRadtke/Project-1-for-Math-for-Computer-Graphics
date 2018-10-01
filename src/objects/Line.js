@@ -22,7 +22,7 @@ class Line extends Shape {
    * @param {Color} color The color of this shape (default Color.WHITE)
    * @param {boolean} filled Is the shape filled or not (default true)
    */
-  constructor (gl, newP1, newP2, color, filled) {
+  constructor(gl, newP1, newP2, color, filled) {
     // Call parent constructor first
     super(color, filled)
 
@@ -46,12 +46,11 @@ class Line extends Shape {
    * Computes and returns a reasonable value for the center of the line
    * @return {Point} The center of the line
    */
-  computeCentroid () {
-    // TODO: Complete this function so it computes a reasonable value
-    //       for the center of the line, then return tha value.
-
-    // NOTE: This line is temporary, remove it once you are done.
-    return Point.ORIGIN
+  computeCentroid() {
+    return new Point(
+      (this.P1.x + this.P2.x) / 2,
+      (this.P1.y + this.P2.y) / 2,
+    )
   }
 
   /**
@@ -60,23 +59,18 @@ class Line extends Shape {
    * to draw this shape using WebGL.
    * @param {WebGLRenderingContext} gl The canvas element rendering context
    */
-  updateBuffers (gl) {
-    // TODO: Transform the endpoints of the line by the matrix this.M
-    //       and store the result to new variables.  The endpoints are
-    //       stored as this.P1 and this.P2.
+  updateBuffers(gl) {
+    // Transform the three vertices
+    let P1 = transformPoint(this.P1, this.M)
+    let P2 = transformPoint(this.P2, this.M)
 
-    // TODO: Pack the transformed endpoints into a Float32Array and store
-    //       it in this._positions.
-    //
-    // Here are some tips:
-    //   - Float32Array is a special array object built into JavaScript
-    //   - You create a new one by saying 'new Float32Array()'
-    //   - Pass a normal JavaScript array with your values to the constructor
-    //   - The array should contain the raw components of the endpoints
-    //     in order as a single, one-dimensional array
-    //   - Be sure to also include a value for the Z-axis even though
-    //     we are in 2D, just to make WebGL happy.
-    this._positions = new Float32Array([])
+    // Pack the vertex information into a single, typed array
+    // Note: Z is included even though it should always be 0
+    //       This is because WebGL/OpenGL expects it
+    this._positions = new Float32Array([
+      P1.x, P1.y,
+      P2.x, P2.y,
+    ])
 
     // Make the WebGL ArayBuffer for this shape (using nanoGL)
     this.buffer = new NanoGL.ArrayBuffer(gl, this._positions)

@@ -35,6 +35,15 @@ class Shape {
     // - rotAroundCenter (boolean indicating to rotate around center of object)
     // - M (the pre-computed transformation matrix)
     // CAUTION! Don't call computeCentroid here, either directly or indirectly
+
+    this.tx = 0;
+    this.ty = 0;
+    this.sx = 1;
+    this.sy = 1;
+
+    this.rotAngle = 0;
+    this.rotAroundCenter = 0;
+    this.M = 0;
   }
 
   // Function to get the ID of this shape as a number
