@@ -13,7 +13,7 @@ class Shape {
    * @param {Color} C The color of this shape (default Color.WHITE)
    * @param {boolean} fill Is the shape filled or not (default true)
    */
-  constructor (C, fill) {
+  constructor(C, fill) {
     // Test if C and 'fill' were provided and give them
     // default values if they were not
     this.color = (typeof C !== 'undefined') ? C : Color.WHITE
@@ -28,41 +28,38 @@ class Shape {
     this.buffer = null
 
     // Default transformation properties
-    // TODO: Assign REASONABLE default values for the following properties
-    //       which are all be members of 'this'
-    // - tx, ty, sx, sy (numbers for translation and scale)
-    // - rotAngle (angle of rotation in degrees)
-    // - rotAroundCenter (boolean indicating to rotate around center of object)
-    // - M (the pre-computed transformation matrix)
-    // CAUTION! Don't call computeCentroid here, either directly or indirectly
-
+    // - tx, ty (numbers for translation)
     this.tx = 0;
     this.ty = 0;
+    // sx, sy (numbers for scale)
     this.sx = 1;
     this.sy = 1;
 
+    // - rotAngle (angle of rotation in degrees)
+    // - rotAroundCenter (boolean indicating to rotate around center of object)
+    // - M (the pre-computed transformation matrix)
     this.rotAngle = 0;
     this.rotAroundCenter = 0;
     this.M = 0;
   }
 
   // Function to get the ID of this shape as a number
-  get id () { return this._id }
+  get id() { return this._id }
 
   // Function to get the type of this shape (a Shape.SHAPE_TYPE values)
-  get type () { return this._type }
+  get type() { return this._type }
 
   // Functions to get or set the color of this shape as a Color object
-  get color () { return this._color }
-  set color (C) {
+  get color() { return this._color }
+  set color(C) {
     if (C instanceof Color) {
       this._color = C
     }
   }
 
   // Functions to get or set whether or not this shape is filled
-  get filled () { return this._filled }
-  set filled (filled) {
+  get filled() { return this._filled }
+  set filled(filled) {
     if (typeof filled === 'boolean') {
       this._filled = filled
     }
@@ -74,14 +71,14 @@ class Shape {
    * @virtual
    * @return {Point} The center of the shape in global coordinates
    */
-  computeCentroid () { return Point.ORIGIN }
+  computeCentroid() { return Point.ORIGIN }
 
   /**
    * Build or re-build the array buffers for drawing this shape in WebGL
    * @abstract
    * @param {WebGLRenderingContext} gl The current webGL rendering context
    */
-  updateBuffers (gl) {
+  updateBuffers(gl) {
     console.error('ERROR: Abstract Shape.updateBuffers() called.')
   }
 }

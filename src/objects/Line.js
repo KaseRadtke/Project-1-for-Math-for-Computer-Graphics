@@ -68,8 +68,8 @@ class Line extends Shape {
     // Note: Z is included even though it should always be 0
     //       This is because WebGL/OpenGL expects it
     this._positions = new Float32Array([
-      P1.x, P1.y,
-      P2.x, P2.y,
+      P1.x, P1.y, P1.z,
+      P2.x, P2.y, P2.z,
     ])
 
     // Make the WebGL ArayBuffer for this shape (using nanoGL)

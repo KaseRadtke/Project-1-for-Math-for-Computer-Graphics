@@ -1,10 +1,44 @@
 // TODO: Import any objects or functions needed here
 
 // TODO: Provide the following functions
-//   - makeIdentityMatrix ()
-//   - makeTranslationMatrix (tx, ty)
-//   - makeScaleMatrix (sx, sy)
-//   - makeRotationMatrix (thetaInDegrees)
+export function makeIdentityMatrix() {
+
+  /****** ASK QUESTIONS HERE ********/
+  this.iMatrix = new Float32Array([
+    1, 0, 0,
+    0, 1, 0,
+    0, 0, 1,
+  ])
+
+  return this.iMatrix;
+}
+
+export function makeTranslationMatrix(tx, ty) {
+
+  /****** ASK QUESTIONS HERE ********/
+  this.tMatrix = new Float32Array([
+    1, 0, ty,
+    0, 1, tx,
+    0, 0, 1,
+  ])
+  return this.tMatrix;
+}
+
+export function makeScaleMatrix(sx, sy) {
+
+  /****** ASK QUESTIONS HERE ********/
+  this.sMatrix = new Float32Array([
+    sx, 0, 0,
+    0, sy, 0,
+    0, 0, 1,
+  ])
+  return this.sMatrix;
+
+}
+
+export function makeRotationMatrix(thetaInDegrees) {
+
+}
 // Each function should construct the particular matrix sugested
 // by its name and then return that matrix. The matrix is stored
 // as a single-dimensional array of 9 values in COLUMN-MAJOR
@@ -54,7 +88,7 @@
  * @param {number} f The location of the FAR face of the view
  *                   volume (optional, defaults to 1)
  */
-export function orthoMatrix (b, t, l, r, n = -1.0, f = 1.0) {
+export function orthoMatrix(b, t, l, r, n = -1.0, f = 1.0) {
   // Pre-compute matrix values
   var A1 = 2 / (r - l)
   var B1 = 2 / (t - b)
