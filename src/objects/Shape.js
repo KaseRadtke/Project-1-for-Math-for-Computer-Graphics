@@ -4,6 +4,8 @@ import Point from './Point'
 
 // TODO: Import any other functions or classes you need here
 
+import Line from './Line'
+
 /** @class Object to represent a drawable 2D shape */
 class Shape {
   /**

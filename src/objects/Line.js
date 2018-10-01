@@ -3,6 +3,8 @@ import Shape from './Shape'
 import Point from './Point'
 
 // TODO: Import the transformPoint function from matrix_math
+
+import transformPoint from 'matrix_math'
 //       This is needed inside the updateBuffers() function
 
 // Import NanoGL library
